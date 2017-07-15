@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Doctor Finder</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/stylish-portfolio.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+    <h1 align="center">Physician Search</h1>
+    <!-- Search Panel. -->
+    <div class="searchmenu">
+        <h4>Name: 
+            <input type="text" id="inputName" onkeyup="nameSearch()" placeholder="Search for names..">
+        </h4> 
+            <h4>City: <input type="text" id="inputCity" onkeyup="citySearch()" placeholder="Search for city.."> 
+        </h4> 
+        <h4>Specialization:  
+            <select id="branch" class="filterRow" data-attribute="branch">
+                <option value="0">Select All</option>
+                <option value="Neurology">Neurology</option>
+                <option value="Pediatrics">Pediatrics</option>
+            </select>
+        </h4> 
+        <h4>Healthcare Provider:   
+            <select id="Healthcare Provider" class="filterRow" data-attribute="hp">
+                <option value="0">Select All</option>
+                <option value="BlueCross BlueShield">BlueCross BlueShield</option>
+                <option value="UnitedHealthCare">UnitedHealthCare</option>
+                <option value="Kaiser Permanente">Kaiser Permanente</option>
+            </select>
+        </h4> 
+    </div>           
+    
+    <!-- Sample HTML Table with Doctor's Data. -->
+    <table id="doctorsTable">
+        <tr>
+            <th>Name</th>
+            <th>Specialty</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Rating</th>
+            <th>Healthcare Provider</th>
+        </tr>
+        <tr class="Row" data-hp="BlueCross BlueShield" data-branch="Neurology">
+            <td onclick="openModel(event, 'btn1', 'm1')" id="btn1" style="cursor: pointer;">Cameron Adams</td>
+            <td>Neurology</td>
+            <td>San Francisco</td>
+            <td>CA</td>
+            <td>4</td>
+            <td>BlueCross BlueShield</td>
+        </tr>
+        <tr class="Row" data-hp="BlueCross BlueShield" data-branch="Pediatrics" onclick="openModel(event, 'btn2', 'm2')" id="btn2" style="cursor: pointer;">
+            <td>Phillip Ahn</td>
+            <td>Pediatrics</td>
+            <td>San Francisco</td>
+            <td>CA</td>
+            <td>3.5</td>
+            <td>BlueCross BlueShield</td>
+        </tr>
+        <tr class="Row" data-hp="BlueCross BlueShield" data-branch="Pediatrics" onclick="openModel(event, 'btn3', 'm3')" id="btn3" style="cursor: pointer;">
+            <td>David Alexander</td>
+            <td>Pediatrics</td>
+            <td>San Jose</td>
+            <td>CA</td>
+            <td>3</td>
+            <td>BlueCross BlueShield</td>
+        </tr>
+
+        <tr class="Row" data-hp="BlueCross BlueShield" data-branch="Neurology" onclick="openModel(event, 'btn4', 'm4')" id="btn4" style="cursor: pointer;">
+            <td>John Doe</td>
+            <td>Neurology</td>
+            <td>San Jose</td>
+            <td>CA</td>
+            <td>4</td>
+            <td>BlueCross BlueShield</td>
+        </tr>
+
+        <tr class="Row" data-hp="BlueCross BlueShield" data-branch="Neurology" onclick="openModel(event, 'btn5', 'm5')" id="btn5" style="cursor: pointer;">
+            <td>Jane Smith</td>
+            <td>Neurology</td>
+            <td>Mountain View</td>
+            <td>CA</td>
+            <td>3</td>
+            <td>BlueCross BlueShield</td>
+        </tr>
+        
+        <tr class="Row" data-hp="UnitedHealthCare" data-branch="Neurology" onclick="openModel(event, 'btn6', 'm6')" id="btn6" style="cursor: pointer;">
+            <td>Cameron Smith</td>
+            <td>Neurology</td>
+            <td>San Francisco</td>
+            <td>CA</td>
+            <td>4</td>
+            <td>UnitedHealthCare</td>
+        </tr>
+
+        <tr class="Row" data-hp="UnitedHealthCare" data-branch="Pediatrics" onclick="openModel(event, 'btn7', 'm7')" id="btn7" style="cursor: pointer;">
+            <td>Phillip Alexander MD</td>
+            <td>Pediatrics</td>
+            <td>San Francisco</td>
+            <td>CA</td>
+            <td>3.5</td>
+            <td>UnitedHealthCare</td>
+        </tr>
+
+        <tr class="Row" data-hp="UnitedHealthCare" data-branch="Pediatrics" onclick="openModel(event, 'btn8', 'm8')" id="btn8" style="cursor: pointer;">
+            <td>David Doe MD</td>
+            <td>Pediatrics</td>
+            <td>San Jose</td>
+            <td>CA</td>
+            <td>3</td>
+            <td>UnitedHealthCare</td>
+        </tr>
+
+        <tr class="Row" data-hp="UnitedHealthCare" data-branch="Neurology" onclick="openModel(event, 'btn9', 'm9')" id="btn9" style="cursor: pointer;">
+            <td>John Adams</td>
+            <td>Neurology</td>
+            <td>San Jose</td>
+            <td>CA</td>
+            <td>4</td>
+            <td>UnitedHealthCare</td>
+        </tr>
+
+        <tr class="Row" data-hp="UnitedHealthCare" data-branch="Neurology" onclick="openModel(event, 'btn10', 'm10')" id="btn10" style="cursor: pointer;">
+            <td>Jane Fee</td>
+            <td>Neurology</td>
+            <td>Mountain View</td>
+            <td>CA</td>
+            <td>3</td>
+            <td>UnitedHealthCare</td>
+        </tr>
+
+        <tr class="Row" data-hp="BlueCross BlueShield" data-branch="Neurology" onclick="openModel(event, 'btn11', 'm11')" id="btn11" style="cursor: pointer;">
+            <td>Cameron Ahn</td>
+            <td>Neurology</td>
+            <td>Berkeley</td>
+            <td>CA</td>
+            <td>4</td>
+            <td>BlueCross BlueShield</td>
+        </tr>
+
+        <tr class="Row" data-hp="BlueCross BlueShield" data-branch="Pediatrics" onclick="openModel(event, 'btn12', 'm12')" id="btn12" style="cursor: pointer;">
+            <td>Phillip Smith</td>
+            <td>Pediatrics</td>
+            <td>Oakland</td>
+            <td>CA</td>
+            <td>3.5</td>
+            <td>BlueCross BlueShield</td>
+        </tr>
+
+        <tr class="Row" data-hp="UnitedHealthCare" data-branch="Pediatrics" onclick="openModel(event, 'btn13', 'm13')" id="btn13" style="cursor: pointer;">
+            <td>David Smith</td>
+            <td>Pediatrics</td>
+            <td>San Mateo</td>
+            <td>CA</td>
+            <td>3</td>
+            <td>UnitedHealthCare</td>
+        </tr>
+
+        <tr class="Row" data-hp="UnitedHealthCare" data-branch="Neurology" onclick="openModel(event, 'btn14', 'm14')" id="btn14" style="cursor: pointer;">
+            <td>John Alexander</td>
+            <td>Neurology</td>
+            <td>Palo Alto</td>
+            <td>CA</td>
+            <td>4</td>
+            <td>UnitedHealthCare</td>
+        </tr>
+
+        <tr class="Row" data-hp="Kaiser Permanente" data-branch="Neurology" onclick="openModel(event, 'btn15', 'm15')" id="btn15" style="cursor: pointer;">
+            <td>Jane Jones</td>
+            <td>Neurology</td>
+            <td>Berkeley</td>
+            <td>CA</td>
+            <td>3</td>
+            <td>Kaiser Permanente</td>
+        </tr>
+
+        <tr class="Row" data-hp="Kaiser Permanente" data-branch="Neurology" onclick="openModel(event, 'btn16', 'm16')" id="btn16" style="cursor: pointer;">
+            <td>Joesph Li</td>
+            <td>Neurology</td>
+            <td>Oakland</td>
+            <td>CA</td>
+            <td>4</td>
+            <td>Kaiser Permanente</td>
+        </tr>
+
+        <tr class="Row" data-hp="Kaiser Permanente" data-branch="Pediatrics" onclick="openModel(event, 'btn17', 'm17')" id="btn17" style="cursor: pointer;">
+            <td>Kavya Ma</td>
+            <td>Pediatrics</td>
+            <td>San Mateo</td>
+            <td>CA</td>
+            <td>3.5</td>
+            <td>Kaiser Permanente</td>
+        </tr>
+
+        <tr class="Row" data-hp="Kaiser Permanente" data-branch="Pediatrics" onclick="openModel(event, 'btn18', 'm18')" id="btn18" style="cursor: pointer;">
+            <td>Carla Jones</td>
+            <td>Pediatrics</td>
+            <td>Mountain View</td>
+            <td>CA</td>
+            <td>3</td>
+            <td>Kaiser Permanente</td>
+        </tr>
+
+        <tr class="Row" data-hp="Kaiser Permanente" data-branch="Neurology" onclick="openModel(event, 'btn19', 'm19')" id="btn19" style="cursor: pointer;">
+            <td>Calvin Lee</td>
+            <td>Neurology</td>
+            <td>San Jose</td>
+            <td>CA</td>
+            <td>4</td>
+            <td>Kaiser Permanente</td>
+        </tr>
+
+        <tr class="Row" data-hp="Kaiser Permanente" data-branch="Neurology" onclick="openModel(event, 'btn20', 'm20')" id="btn20" style="cursor: pointer;">
+            <td>Michael Brown</td>
+            <td>Neurology</td>
+            <td>San Francisco</td>
+            <td>CA</td>
+            <td>3</td>
+            <td>Kaiser Permanente</td>
+        </tr>
+    </table>
+
+
+    <!-- Models. -->
+    <!-- 1-->
+    <div id="m1" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <img src="../img/user.png"/>
+            <h2>Cameron Adams</h2>
+            <h3>Neurology</h3>
+            <h4>San Francisco, CA</h4>           
+      </div>
+      <div class="modal-body">
+        <p style="color:black;">
+            <h3><b>Rating:</b> &starf;&starf;&starf;&starf;&star; <br></h3>
+            <h3><b>Phone Number:</b> (xxx) xxx - xxxx <br></h3>
+            <h3><b>Accepted Insurance:</b> BlueCross BlueShield <br></h3>
+            <h3 align="center">Overview</h3><br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <h3 align="center">Experience</h3><br>
+            <b>Years in Practice:</b> xx <br>
+            <b>Education & Training:</b> <br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <h3 align="center">Similar Practitioners</h3><br>            
+            <br><br>
+            <button onclick="filter('Cameron Adams', 'San Francisco','Neurology', 'BlueCross BlueShield')">Click to See Similar Practitioners</button>    
+        </p>
+      </div>
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; Prathyusha Charagondla 2017</p>
+                </div>
+            </div>
+        </div>
+        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+    <script type="text/javascript">
+        var table = document.getElementById("doctorsTable");
+        /* Searchs Names & Displays Rows with exact names. Eventually hope to expand to using a Fuzzy Search, so that names similar to what was typed is also displayed. */
+        function nameSearch() {
+          var input, filter, tr, td, i;
+          input = document.getElementById("inputName");
+          filter = input.value.toUpperCase();
+          tr = table.getElementsByTagName("tr");
+
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+              if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            } 
+          }
+        }
+        /* Searchs for a City & Displays Rows with exact city names. Eventually hope to expand to using geolocation so that cities close to the one searched will also appear. */        
+        function citySearch() {
+          var input, filter, tr, td, i;
+          input = document.getElementById("inputCity");
+          filter = input.value.toUpperCase();
+          tr = table.getElementsByTagName("tr");
+
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+              if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            } 
+          }
+        }        
+    String.prototype.replaceAll = function(search, replacement) {
+        var target = this;
+        return target.replace(new RegExp(search, 'g'), replacement);
+    };
+
+    $(document).ready(function() {
+        var filterRow = $('select.filterRow'),
+            headerCount = $('#headerCount');
+        headerCount.html($('#doctorsTable').find('.Row').length + ' Registered Kids');
+
+        filterRow.on('change', function() {
+            filterRow.attr('disabled', 'disabled');
+
+            var records = $('#doctorsTable').find('.Row');
+            records.hide();
+
+            var critriaAttributes = [];
+            filterRow.each(function() {
+                var $this = $(this),
+                    $selectedLength = $this.find(':selected').length,
+                    $critriaAttribute = '';
+
+                if ($selectedLength > 0 && $this.val() != '0') {
+                    if ($selectedLength == 1) {
+                        $critriaAttribute += '[data-' + $this.data('attribute') + '*="' + $this.val() + '"]';
+                    } else {
+                        var $startDataAttribute = '[data-' + $this.data('attribute') + '*="',
+                            $endDataAttribute = '"]',
+                            $selectedValues = $this.val().toString();
+
+                        $critriaAttribute += $startDataAttribute + $selectedValues.replaceAll(',', ($endDataAttribute + ',' + $startDataAttribute)) + $endDataAttribute;
+                    }
+                    critriaAttributes.push($critriaAttribute);
+                }
+            });
+
+            var $showRecords = records;
+            if (critriaAttributes.length > 0) {
+                $.each(critriaAttributes, function(i, filterValue) {
+                    $showRecords = $showRecords.filter(filterValue);
+                });
+            }
+            $showRecords.show();
+
+            filterRow.removeAttr('disabled');
+        });
+    });
+
+    /* Model. */
+    function openModel(event, name, modelName) {
+        // Get the modal
+        var modal = document.getElementById(modelName);
+
+        // Get the image that opens the modal
+        var btn = document.getElementById(name);
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // Ppen the modal 
+        modal.style.display = "block";
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+              modal.style.display = "none";
+          }
+        }   
+    }
+
+    /* Button that scrolls to the top. */
+    var fixed = false;
+    $(document).scroll(function() {
+        if ($(this).scrollTop() > 250) {
+            if (!fixed) {
+                fixed = true;
+                $('#to-top').show("slow", function() {
+                    $('#to-top').css({
+                        position: 'fixed',
+                        display: 'block'
+                    });
+                });
+            }
+        } else {
+            if (fixed) {
+                fixed = false;
+                $('#to-top').hide("slow", function() {
+                    $('#to-top').css({
+                        display: 'none'
+                    });
+                });
+            }
+        }
+    });
+
+    /* Similar Search Filter. With time, I would implement a better similarity reccomendation system where each variable would be assigned the same specific weight (i.e. Same Healthcare Provider might be 10, Same specialization might be 8, etc), which ever results have the highest similarities (greatest number of points), would be the top results shown.*/
+    function filter (name, specialty, city, hp) {
+      var score, tr, td, i;
+      tr = table.getElementsByTagName("tr");
+
+      for (i = 0; i < tr.length; i++) {
+        score = 0;
+        dname = tr[i].getElementsByTagName("td")[0];
+        dspecialty = tr[i].getElementsByTagName("td")[1];
+        dcity = tr[i].getElementsByTagName("td")[2];
+        dhp = tr[i].getElementsByTagName("td")[5];
+
+        if (dname && dname.innerHTML.toUpperCase().indexOf(name.toUpperCase())!= 0) {
+          if (dspecialty.innerHTML.toUpperCase().indexOf(specialty.toUpperCase()) > -1) {
+            score++;
+          }
+          if (dcity.innerHTML.toUpperCase().indexOf(city.toUpperCase()) > -1) {
+            score++;
+          }
+          if (dhp.innerHTML.toUpperCase().indexOf(hp.toUpperCase()) > -1) {
+            score++;
+          }                    
+        }
+        if (score == 3) {
+            document.write(dname);
+        }           
+      }
+    }    
+    </script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

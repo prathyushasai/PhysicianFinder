@@ -1,0 +1,21 @@
+Name,Specialty,City,State,Rating,Healthcare Provider
+Cameron Adams,Neurology,San Francisco,CA,4,BlueCross BlueShield
+Phillip Ahn,Pediatrics,San Francisco,CA,3.5,BlueCross BlueShield
+David Alexander,Pediatrics,San Jose,CA,3,BlueCross BlueShield
+John Doe,Neurology,San Jose,CA,4,BlueCross BlueShield
+Jane Smith,Neurology,Mountain View,CA,3,BlueCross BlueShield
+Cameron Smith,Neurology,San Francisco,CA,4,UnitedHealthCare
+Phillip Alexander,Pediatrics,San Francisco,CA,3.5,UnitedHealthCare
+David Doe,Pediatrics,San Jose,CA,3,UnitedHealthCare
+John Adams,Neurology,San Jose,CA,4,UnitedHealthCare
+Jane Fee,Neurology,Mountain View,CA,3,UnitedHealthCare
+Cameron Ahn,Neurology,Berkeley,CA,4,BlueCross BlueShield
+Phillip Smith,Pediatrics,Oakland,CA,3.5,BlueCross BlueShield
+David Smith,Pediatrics,San Mateo,CA,3,UnitedHealthCare
+John Alexander,Neurology,Palo Alto,CA,4,UnitedHealthCare
+Jane Jones,Neurology,Berkeley,CA,3,Kaiser Permanente
+Joesph Li,Neurology,Oakland,CA,4,Kaiser Permanente
+Kavya Ma,Pediatrics,San Mateo,CA,3.5,Kaiser Permanente
+Carla Jones,Pediatrics,Mountain View,CA,3,Kaiser Permanente
+Calvin Lee,Neurology,San Jose,CA,4,Kaiser Permanente
+Michael Brown,Neurology,San Francisco,CA,3,Kaiser Permanente
